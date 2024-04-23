@@ -1,14 +1,14 @@
 package aps;
 
+import DAO.LoginDAO;
+import entidades.Login;
+
 public class Main {
 	public static void main(String[] args) {
 		
-		try {
-			Class.forName("com.mysql.jbdc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Login l=new Login("Carlos","12345");
+		
+		new LoginDAO().cadastrarUsuario(l);
 		
 		
 	}
