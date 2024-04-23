@@ -47,5 +47,7 @@ estado varchar(40) NOT NULL
 );
 
 ALTER TABLE patrimonio ADD FOREIGN KEY(id_pessoa) REFERENCES pessoa(id);
+
 ALTER TABLE pessoa ADD FOREIGN KEY(id_login) REFERENCES login(id);
+
 ALTER TABLE pessoa ADD FOREIGN KEY(id_telefones) REFERENCES telefones(id);
