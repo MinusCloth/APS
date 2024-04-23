@@ -6,9 +6,9 @@ import entidades.Login;
 public class Main {
 	public static void main(String[] args) {
 		
-		Login l=new Login("Carlos","12345");
+		Login l=new Login();
 		
-		new LoginDAO().cadastrarUsuario(l);
+		new LoginDAO().autenticacaoUsuario(l);
 		
 		
 	}

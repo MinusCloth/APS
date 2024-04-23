@@ -1,33 +1,37 @@
 package DAO;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
 
 import conexao.Conexao;
 import entidades.Login;
 
 public class LoginDAO {
 	
-	public void cadastrarUsuario(Login usuario) {
-		String sql ="INSERT INTO login(Usuario,Senha)VALUES(?,?) ";
+	Connection conn;
+	
+	public ResultSet autenticacaoUsuario(Login objusuario) {
+		new Conexao();
+		conn =Conexao.getConexao();//declarar variavel tipo conexao
 		
-		PreparedStatement ps =null;
-		
-		try {
-			ps=Conexao.getConexao().prepareStatement(sql);
+		try {                     //try vai tentar trazer o resultado da query 
+			String sql ="select * from login where Usuario=? and Senha=? ";
 			
-			ps.setString(1, usuario.getUsuario());
-			ps.setString(2, usuario.getSenha());
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, objusuario.getUsuario());
+			ps.setString(2, objusuario.getSenha());
 			
-			ps.execute();
-			ps.close();
+			ResultSet rs=ps.executeQuery();
+			return rs;
 			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
+		} catch (SQLException erro) {
+			JOptionPane.showMessageDialog(null,"LoginDAO"+ erro);
+			return null;
 		}
-		
-		
-	}
-
+				}
+	
 }
