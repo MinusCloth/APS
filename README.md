@@ -5,7 +5,7 @@
 funcionalidades (MVP – Minimum Viable Product) deste sistema
   
 
-## 🛠️ Technologies Useds:
+## 🛠️ Tecnolagias Usadas:
 - Eclipse
 - MySQL/DBeaver
 - Git/GitHub
