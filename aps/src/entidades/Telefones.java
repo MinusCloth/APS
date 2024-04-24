@@ -6,9 +6,9 @@ public class Telefones {
 	private String telefone2;
 	
 	
-	public Telefones(String telefone1, String telefone2) {
+	public Telefones(String telefone1) {
 		this.telefone1 = telefone1;
-		this.telefone2 = telefone2;
+	
 	}
 	
 	public String getTelefone1() {

@@ -21,6 +21,7 @@ public class LoginDAO {
 		try {                     //try vai tentar trazer o resultado da query 
 			String sql ="select * from login where Usuario=? and Senha=? ";
 			
+			//verifica se tem essa pessoa com esse login
 			PreparedStatement ps=conn.prepareStatement(sql);
 			ps.setString(1, objusuario.getUsuario());
 			ps.setString(2, objusuario.getSenha());
