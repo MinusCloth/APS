@@ -98,7 +98,7 @@ public class frmLoginView extends JFrame {
 			
 			if(rloginDAO.next()) {
 			//chamar tela que eu quero abrir
-				frmPrincipal objfrmprincipal = new frmPrincipal();
+				frmPessoa objfrmprincipal = new frmPessoa();
 				//abrir a tela principal
 				objfrmprincipal.setVisible(true);
 				//fechar tela de login
