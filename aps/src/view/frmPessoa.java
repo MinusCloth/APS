@@ -7,18 +7,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import DAO.PessoaDAO;
+import DAO.TelefoneDAO;
 import entidades.Pessoa;
 import entidades.Telefones;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class frmPrincipal extends JFrame {
+public class frmPessoa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -35,7 +33,7 @@ public class frmPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmPrincipal frame = new frmPrincipal();
+					frmPessoa frame = new frmPessoa();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +45,7 @@ public class frmPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmPrincipal() {
+	public frmPessoa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 594);
 		contentPane = new JPanel();
@@ -97,7 +95,7 @@ public class frmPrincipal extends JFrame {
 		textRuaPessoa.setColumns(10);
 		
 		JLabel lanbelTelefonePessoa = new JLabel("Telefone");
-		lanbelTelefonePessoa.setBounds(28, 409, 46, 14);
+		lanbelTelefonePessoa.setBounds(28, 409, 89, 14);
 		contentPane.add(lanbelTelefonePessoa);
 		
 		textTelefonePessoa = new JTextField();
@@ -111,13 +109,13 @@ public class frmPrincipal extends JFrame {
 				cadastrarPessoa();
 			}
 		});
-		btnCadastrarPessoa.setBounds(224, 521, 89, 23);
+		btnCadastrarPessoa.setBounds(224, 521, 128, 23);
 		contentPane.add(btnCadastrarPessoa);
 	}
 	private void cadastrarPessoa() {
 		
 		
-		try {//criar variaveis
+		//criar variaveis
 			String nomePessoa,emailPessoa,cidadePessoa,ruaPessoa,telefonePessoa;
 			
 			//salvar parametros que o usuario escreveu
@@ -131,18 +129,18 @@ public class frmPrincipal extends JFrame {
 			Pessoa objPessoa = new Pessoa(nomePessoa,emailPessoa,cidadePessoa,ruaPessoa);
 			Telefones objTelefone=new Telefones(telefonePessoa);
 			
+			
+			//instanciar pessoaDAO para mandar as informções para o DB
 			PessoaDAO objPessoaDAO =new PessoaDAO();
-			ResultSet rPessoaDAO=objPessoaDAO.autenticacaoPessoa(objPessoa);
+			objPessoaDAO.cadastrarPessoa(objPessoa);
 			
-			if(rPessoaDAO.next()==false) {
-				//Pessoa ja esta cadastrada,     //se nao{ CADASTRADO COM SUCESSO}
-			}
-			else {}
+			//instanciar telefonDAO para mandar as informções para o DB
+			TelefoneDAO objtelefoneDAO= new TelefoneDAO();
+			objtelefoneDAO.cadastrarTelefone(objTelefone);
 			
-		} catch (SQLException e) {
-			JOptionPane.showInternalMessageDialog(null,"fmrPessoa"+ e);
 			
-		}
+			
+		
 	
 	}
 	
