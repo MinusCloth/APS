@@ -69,6 +69,33 @@ public class PessoaDAO {
 			
 		}
 	
+	public boolean pessoaExiste(Pessoa objPessoa) {
+		new Conexao();
+		conn =Conexao.getConexao();
+		
+		
+	    // Consulta SQL para verificar se a pessoa já existe
+	    String sql = "SELECT COUNT(*) FROM pessoa WHERE nome=? AND email=? AND cidade=? AND rua=?";
+	    try {
+	        // Preparar comando SQL
+	        ps = conn.prepareStatement(sql);
+	        ps.setString(1, objPessoa.getNome());
+	        ps.setString(2, objPessoa.getemail());
+	        ps.setString(3, objPessoa.getCidade());
+	        ps.setString(4, objPessoa.getRua());
+
+	        // Executar consulta SQL
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            int count = rs.getInt(1);
+	            return count > 0; // Se count for maior que 0, significa que a pessoa já existe
+	        }
+	    } catch (SQLException erro) {
+	        JOptionPane.showMessageDialog(null, "Erro ao verificar se a pessoa já existe: " + erro.getMessage());
+	    }
+	    return false;
+	}
+	
 	
 
 }

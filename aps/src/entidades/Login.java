@@ -2,6 +2,7 @@ package entidades;
 
 public class Login {
 	
+	private int id_login;
 	private String usuario;
 	private String senha;
 	
@@ -14,8 +15,16 @@ public class Login {
 	}*/
 	
 	
+	
+	
 	public String getUsuario() {
 		return usuario;
+	}
+	public int getId_login() {
+		return id_login;
+	}
+	public void setId_login(int id_login) {
+		this.id_login = id_login;
 	}
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;

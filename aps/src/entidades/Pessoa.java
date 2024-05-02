@@ -5,10 +5,22 @@ public class Pessoa {
 	private String email;
 	private String rua;
 	private String cidade;
-	// id_login     id_telefones   id_pessoa
+	private int id_login,id_telefones,id_pessoa;
 	
 	
 	
+	
+	public int getId_login() {
+		return id_login;
+	}
+
+	public int getId_telefones() {
+		return id_telefones;
+	}
+
+	public int getId_pessoa() {
+		return id_pessoa;
+	}
 	
 	public String  getNome() {
 		return this.nome;
@@ -23,7 +35,15 @@ public class Pessoa {
 		return this.cidade;
 	}
 	
-	
+	public void setId_login(int id_login) {
+		this.id_login = id_login;
+	}
+	public void setId_telefones(int id_telefones) {
+		this.id_telefones = id_telefones;
+	}
+	public void setId_pessoa(int id_pessoa) {
+		this.id_pessoa = id_pessoa;
+	}
 	public void setNome(String nome) {
 		this.nome=nome;
 	}

@@ -1,17 +1,49 @@
 package entidades;
 
 public class Chamados {
-	//id_chamados   id_pessoa
+	private int id_chamados,id_pessoa;
 	private String descricao;
 	private String status;
 	
-	public Chamados(String descricao, String status) {
+	
+	
+	public Chamados(String descricao) {	
 		super();
 		this.descricao = descricao;
-		this.status = status;
+		this.status ="Aberto";
 	}
 	
 	
+	
+	
+	public int getId_chamados() {
+		return id_chamados;
+	}
+
+
+
+
+	public void setId_chamados(int id_chamados) {
+		this.id_chamados = id_chamados;
+	}
+
+
+
+
+	public int getId_pessoa() {
+		return id_pessoa;
+	}
+
+
+
+
+	public void setId_pessoa(int id_pessoa) {
+		this.id_pessoa = id_pessoa;
+	}
+
+
+
+
 	public String getDescricao() {
 		return descricao;
 	}

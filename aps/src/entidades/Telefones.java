@@ -1,7 +1,7 @@
 package entidades;
 
 public class Telefones {
-	//id_telefones
+	private int id_telefones;
 	private String telefone1;
 	private String telefone2;
 	
@@ -11,6 +11,20 @@ public class Telefones {
 	
 	}
 	
+	
+	
+	public int getId_telefones() {
+		return id_telefones;
+	}
+
+
+
+	public void setId_telefones(int id_telefones) {
+		this.id_telefones = id_telefones;
+	}
+
+
+
 	public String getTelefone1() {
 		return telefone1;
 	}
