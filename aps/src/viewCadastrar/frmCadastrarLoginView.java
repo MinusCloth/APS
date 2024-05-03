@@ -106,18 +106,12 @@ public class frmCadastrarLoginView extends JFrame {
 		objLoginDAO.cadastrarUsuario(objLogin);
 		JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
 		
-		Timer timer = new Timer(2000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
             	frmCadastrarPessoaView objfrmCadastrarPessoaView=new frmCadastrarPessoaView();
             	objfrmCadastrarPessoaView.setVisible(true);
             	dispose();
 
             }
-        });
-        timer.setRepeats(false); // Para garantir que o timer só execute uma vez
-        timer.start();}
-	
+     
 		}
 	
 	

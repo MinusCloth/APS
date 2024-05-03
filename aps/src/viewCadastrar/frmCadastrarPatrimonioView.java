@@ -97,20 +97,13 @@ public class frmCadastrarPatrimonioView extends JFrame {
 				PatrimonioDAO objPatrimonioDAO=new PatrimonioDAO();
 				objPatrimonioDAO.cadastrarPatrimonio(objPatrimonio);
 				 JOptionPane.showMessageDialog(null, "Patrimonio cadastrado com sucesso!");
-				 Timer timer = new Timer(1500, new ActionListener() {
-			            @Override
-			            public void actionPerformed(ActionEvent e) {
+			
 			            	frmMenuView objfrmMenuView=new frmMenuView();
 			            	objfrmMenuView.setVisible(true);
 			            	dispose();
 			            }
-			        });
-			        timer.setRepeats(false); // Para garantir que o timer só execute uma vez
-			        timer.start();
-				
-				
-				
-			}
+			       
+	
 		});
 		btnCadastrarPatrimonio.setBounds(172, 453, 180, 23);
 		contentPane.add(btnCadastrarPatrimonio);

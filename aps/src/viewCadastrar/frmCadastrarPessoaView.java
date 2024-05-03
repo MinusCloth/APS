@@ -146,17 +146,11 @@ public class frmCadastrarPessoaView extends JFrame {
 					TelefoneDAO objtelefoneDAO= new TelefoneDAO();
 					objtelefoneDAO.cadastrarTelefone(objTelefone);
 					JOptionPane.showMessageDialog(null, "Pessoa cadastrada com sucesso!");
-					 Timer timer = new Timer(2000, new ActionListener() {
-				            @Override
-				            public void actionPerformed(ActionEvent e) {
 				                frmCadastrarPatrimonioView objfrmCadastrarPatrimonio=new frmCadastrarPatrimonioView();
 				                objfrmCadastrarPatrimonio.setVisible(true);
 				                dispose();
 				                
-				            }
-				        });
-				        timer.setRepeats(false); // Para garantir que o timer só execute uma vez
-				        timer.start();
+				      
 				    }
 			    
 	
