@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import entidades.Patrimonio;
 
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frmCarteiraView extends JFrame {
 
@@ -36,7 +39,7 @@ public class frmCarteiraView extends JFrame {
 	 */
 	public frmCarteiraView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 348);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -62,5 +65,23 @@ public class frmCarteiraView extends JFrame {
 		JLabel labelInvestimentos = new JLabel("Investimentos:"+objPatrimonio.getOutrosInvestimentos());
 		labelInvestimentos.setBounds(35, 174, 351, 36);
 		contentPane.add(labelInvestimentos);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				voltar();
+			}
+		});
+		btnVoltar.setBounds(35, 250, 89, 23);
+		contentPane.add(btnVoltar);
 	}
+	//botao voltar
+	private void voltar() {
+		frmMenuView objfrmMenuView =new frmMenuView();
+		objfrmMenuView.setVisible(true);
+		dispose();
+	}
+	
+	
+	
 }

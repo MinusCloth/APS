@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -36,30 +37,37 @@ public class LoginDAO {
 				}
 	
 	public void cadastrarUsuario(Login objUsuario) {
-		//preparar comando SQL
-		String sql="INSERT INTO login(Usuario,Senha) VALUES(?,?)";
-		
-		//conectar DB
-		new Conexao();
-		conn =Conexao.getConexao();
-		
-		try {
-			
-			//preparar comando SQL
-			ps=conn.prepareStatement(sql);
-			ps.setString(1, objUsuario.getUsuario());
-			ps.setString(2,objUsuario.getSenha());
-			
-			//Executar comando SQL
-			ps.execute();
-			ps.close();
-			
-			
-		} catch (Exception erro) {
-			JOptionPane.showInternalMessageDialog(null, "LoginDAO"+erro);
-		}
-		
+	    // Preparar comando SQL
+	    String sql = "INSERT INTO login(Usuario, Senha) VALUES(?, ?)";
+	    
+	    try {
+	        // Conectar DB
+	        Connection conn = Conexao.getConexao();
+	        
+	        // Preparar comando SQL
+	        PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+	        ps.setString(1, objUsuario.getUsuario());
+	        ps.setString(2, objUsuario.getSenha());
+	        
+	        // Executar comando SQL
+	        ps.execute();
+	        
+	        // Obter o ID gerado automaticamente
+	        ResultSet rs = ps.getGeneratedKeys();
+	        if (rs.next()) {
+	            int idGerado = rs.getInt(1);
+	            objUsuario.setId_login(idGerado);
+	        }
+	        
+	        // Fechar recursos
+	        rs.close();
+	        ps.close();
+	   
+	    } catch (Exception erro) {
+	        JOptionPane.showMessageDialog(null, "LoginDAO: " + erro);
+	    }
 	}
+
 	
 	public boolean loginExiste(Login login) {
 		
@@ -86,6 +94,62 @@ public class LoginDAO {
 	
 	
 	}
+	
+	
+	public int obterUltimoIDInserido(Login login) {
+	    int id = -1; // Valor padrão, caso não haja nenhum ID inserido
+
+	    try {
+	        // Consulta para obter o último ID inserido
+	        String sql = "SELECT id_login FROM login WHERE Usuario = ? AND Senha = ?";
+	        	
+	        
+	        ps = conn.prepareStatement(sql);
+	        ps.setString(1,login.getUsuario());
+	        ps.setString(2,login.getSenha());
+	        
+	        
+	        ps = conn.prepareStatement(sql);
+	        ResultSet rs = ps.executeQuery();
+
+	        // Verifica se há um resultado
+	        if (rs.next()) {
+	            id = rs.getInt("last_id"); // Obtém o valor do ID
+	        }
+	        
+	        // Fecha o ResultSet
+	        rs.close();
+	    } catch (Exception erro) {
+	    	JOptionPane.showMessageDialog(null, "LoginDAO obterUltimoIDInserido " + erro);
+		}
+	        
+	    
+
+	    return id;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

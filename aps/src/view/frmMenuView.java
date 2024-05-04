@@ -56,26 +56,26 @@ public class frmMenuView extends JFrame {
 				abrirChamado();
 			}
 		});
-		btnAbrirChamado.setBounds(65, 91, 269, 23);
+		btnAbrirChamado.setBounds(65, 143, 269, 23);
 		contentPane.add(btnAbrirChamado);
 		
-		JButton btnVerChamado = new JButton("Vizualiar Chamados");
+		JButton btnVerChamado = new JButton("Vizualizar Carteira");
 		btnVerChamado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vizualizarChamados();
+				abrirCarteira();
 			}
 		});
-		btnVerChamado.setBounds(65, 177, 269, 23);
+		btnVerChamado.setBounds(65, 229, 269, 23);
 		contentPane.add(btnVerChamado);
 		
-		JButton btnCarteira = new JButton("Vizualizar Carteira");
-		btnCarteira.addActionListener(new ActionListener() {
+		JButton btnGerenciarChamado = new JButton("Gerenciar Chamados");
+		btnGerenciarChamado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vizualizarCarteira();
+				gerenciadorChamadas();
 			}
 		});
-		btnCarteira.setBounds(65, 273, 269, 23);
-		contentPane.add(btnCarteira);
+		btnGerenciarChamado.setBounds(65, 321, 269, 23);
+		contentPane.add(btnGerenciarChamado);
 	}
 	private void abrirChamado() {
 		//levar para o abrir chamado
@@ -85,17 +85,19 @@ public class frmMenuView extends JFrame {
 		
 	}
 	
-	private void vizualizarChamados() {
+	private void gerenciadorChamadas() {
 		//levar para chamados
-		frmVizualizarChamadosView objfrmVizualizarChamadosView=new frmVizualizarChamadosView();
+		frmGerenciadorChamadosView objfrmVizualizarChamadosView=new frmGerenciadorChamadosView();
 		objfrmVizualizarChamadosView.setVisible(true);
 		dispose();
 	}
 	
-	private void vizualizarCarteira() {
+	private void abrirCarteira() {
 		frmCarteiraView objfrmCarteiraView=new frmCarteiraView();
 		objfrmCarteiraView.setVisible(true);
+		dispose();
 	}
+	
 	
 	
 }

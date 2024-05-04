@@ -8,11 +8,13 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import conexao.Conexao;
+import entidades.Login;
 import entidades.Pessoa;
 
 public class PessoaDAO {
 	Connection conn;
 	PreparedStatement ps;
+	Login login=new Login();
 	public void cadastrarPessoa(Pessoa objpessoa) {
 		//INSERIR DADOS OBTIDOS PARA O BANCO DE DADOS
 		String sql="INSERT INTO pessoa(nome,email,cidade,rua)VALUES(?,?,?,?)";
@@ -29,7 +31,8 @@ public class PessoaDAO {
 			ps.setString(2, objpessoa.getemail());
 			ps.setString(3,objpessoa.getCidade());
 			ps.setString(4, objpessoa.getRua());
-		
+			
+			
 			
 			//Executar comando SQL
 			ps.execute();

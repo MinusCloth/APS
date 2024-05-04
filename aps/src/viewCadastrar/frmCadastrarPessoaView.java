@@ -120,6 +120,8 @@ public class frmCadastrarPessoaView extends JFrame {
 		//criar variaveis
 			String nomePessoa,emailPessoa,cidadePessoa,ruaPessoa,telefonePessoa;
 			
+			
+			
 			//salvar parametros que o usuario escreveu
 			nomePessoa=textNomePessoa.getText();
 			emailPessoa=textEmailPessoa.getText();
@@ -127,6 +129,10 @@ public class frmCadastrarPessoaView extends JFrame {
 			ruaPessoa=textRuaPessoa.getText();
 			telefonePessoa=textTelefonePessoa.getText();
 			
+			if(nomePessoa.equals("") || emailPessoa.equals("") || cidadePessoa.equals("") || ruaPessoa.equals("") || telefonePessoa.equals("")) {
+				JOptionPane.showInternalMessageDialog(null,"Preencha todos os campos!");
+			}
+			else {
 			//instanciar obleto da entidade 
 			Pessoa objPessoa = new Pessoa(nomePessoa,emailPessoa,cidadePessoa,ruaPessoa);
 			Telefones objTelefone=new Telefones(telefonePessoa);
@@ -146,18 +152,13 @@ public class frmCadastrarPessoaView extends JFrame {
 					TelefoneDAO objtelefoneDAO= new TelefoneDAO();
 					objtelefoneDAO.cadastrarTelefone(objTelefone);
 					JOptionPane.showMessageDialog(null, "Pessoa cadastrada com sucesso!");
-					 Timer timer = new Timer(2000, new ActionListener() {
-				            @Override
-				            public void actionPerformed(ActionEvent e) {
+					 
 				                frmCadastrarPatrimonioView objfrmCadastrarPatrimonio=new frmCadastrarPatrimonioView();
 				                objfrmCadastrarPatrimonio.setVisible(true);
 				                dispose();
-				                
-				            }
-				        });
-				        timer.setRepeats(false); // Para garantir que o timer só execute uma vez
-				        timer.start();
+				              
 				    }
+			}
 			    
 	
 	

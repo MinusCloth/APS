@@ -84,11 +84,23 @@ public class frmCadastrarPatrimonioView extends JFrame {
 		JButton btnCadastrarPatrimonio = new JButton("Cadastrar");
 		btnCadastrarPatrimonio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//verificar se os campos foram preenchidos
+				 String correnteStr = textCorrente.getText();
+			     String poupancaStr = textPoupanca.getText();
+			     String investimentosStr = textInvestimentos.getText();
+			     
+			     if (correnteStr.isEmpty() || poupancaStr.isEmpty() || investimentosStr.isEmpty()) {
+			            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.");
+			     }else if (!numero(correnteStr) || !numero(poupancaStr) || !numero(investimentosStr)) {
+			            JOptionPane.showMessageDialog(null, "Por favor, insira apenas números válidos nos campos.");
+			        }  else {
+			
 				//criar variaveis para receber os valores inseridos pelo usuario
 				double corrente,poupanca,investimentos;
-				corrente = Double.parseDouble(textCorrente.getText());
-				poupanca = Double.parseDouble(textPoupanca.getText());
-				investimentos = Double.parseDouble(textInvestimentos.getText());
+				corrente = Double.parseDouble(correnteStr);
+				poupanca = Double.parseDouble(poupancaStr);
+				investimentos = Double.parseDouble(investimentosStr);
+				
 				
 				//instanciar Patrimonio para setar os valores
 				Patrimonio objPatrimonio=new Patrimonio(corrente,poupanca,investimentos);
@@ -97,22 +109,27 @@ public class frmCadastrarPatrimonioView extends JFrame {
 				PatrimonioDAO objPatrimonioDAO=new PatrimonioDAO();
 				objPatrimonioDAO.cadastrarPatrimonio(objPatrimonio);
 				 JOptionPane.showMessageDialog(null, "Patrimonio cadastrado com sucesso!");
-				 Timer timer = new Timer(1500, new ActionListener() {
-			            @Override
-			            public void actionPerformed(ActionEvent e) {
+				
 			            	frmMenuView objfrmMenuView=new frmMenuView();
 			            	objfrmMenuView.setVisible(true);
 			            	dispose();
 			            }
-			        });
-			        timer.setRepeats(false); // Para garantir que o timer só execute uma vez
-			        timer.start();
-				
-				
-				
 			}
+				
+				
+			
 		});
 		btnCadastrarPatrimonio.setBounds(172, 453, 180, 23);
 		contentPane.add(btnCadastrarPatrimonio);
+	}
+	
+	//verificar se é numero
+	private boolean numero(String str) {
+	    try {
+	        Double.parseDouble(str);
+	        return true;
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
 	}
 }

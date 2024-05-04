@@ -4,10 +4,25 @@ public class Chamados {
 	private int id_chamados,id_pessoa;
 	private String descricao;
 	private String status;
+	private String dt_abertura;
 	
 	
 	
+	public String getDt_abertura() {
+		return dt_abertura;
+	}
+
+	public void setDt_abertura(String dt_abertura) {
+		this.dt_abertura = dt_abertura;
+	}
+
 	public Chamados(String descricao) {	
+		super();
+		this.descricao = descricao;
+		this.status ="Aberto";
+	}
+
+	public Chamados() {	
 		super();
 		this.descricao = descricao;
 		this.status ="Aberto";

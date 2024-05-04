@@ -90,6 +90,10 @@ public class frmCadastrarLoginView extends JFrame {
 		//pegar informacao que o usuario inseriu
 		nomeUsuario=textNomeUsuario.getText();
 		senhaUsuario=textSenhaUsuario.getText();
+		//verificar se os campos estao preenchidos
+		if(nomeUsuario.equals("") || senhaUsuario.equals("")) {
+			JOptionPane.showInternalMessageDialog(null, "Preencha todos os campos!");
+		}else {
 		
 		//instanciar Login e setar as informaçoes obtidas
 		Login objLogin=new Login();
@@ -106,17 +110,12 @@ public class frmCadastrarLoginView extends JFrame {
 		objLoginDAO.cadastrarUsuario(objLogin);
 		JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
 		
-		Timer timer = new Timer(2000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+		
             	frmCadastrarPessoaView objfrmCadastrarPessoaView=new frmCadastrarPessoaView();
             	objfrmCadastrarPessoaView.setVisible(true);
             	dispose();
 
-            }
-        });
-        timer.setRepeats(false); // Para garantir que o timer só execute uma vez
-        timer.start();}
+            }}
 	
 		}
 	
