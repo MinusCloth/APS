@@ -110,13 +110,21 @@ public class frmCadastrarLoginView extends JFrame {
 		objLoginDAO.cadastrarUsuario(objLogin);
 		JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 8841196eabab89acc2b28aaffdcaea4c2ab0e0fd
             	frmCadastrarPessoaView objfrmCadastrarPessoaView=new frmCadastrarPessoaView();
             	objfrmCadastrarPessoaView.setVisible(true);
             	dispose();
 
+<<<<<<< HEAD
             }}
 	
+=======
+            }
+     
+>>>>>>> 8841196eabab89acc2b28aaffdcaea4c2ab0e0fd
 		}
 	
 	

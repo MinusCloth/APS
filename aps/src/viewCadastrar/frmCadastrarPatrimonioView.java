@@ -109,15 +109,24 @@ public class frmCadastrarPatrimonioView extends JFrame {
 				PatrimonioDAO objPatrimonioDAO=new PatrimonioDAO();
 				objPatrimonioDAO.cadastrarPatrimonio(objPatrimonio);
 				 JOptionPane.showMessageDialog(null, "Patrimonio cadastrado com sucesso!");
+<<<<<<< HEAD
 				
+=======
+			
+>>>>>>> 8841196eabab89acc2b28aaffdcaea4c2ab0e0fd
 			            	frmMenuView objfrmMenuView=new frmMenuView();
 			            	objfrmMenuView.setVisible(true);
 			            	dispose();
 			            }
+<<<<<<< HEAD
 			}
 				
 				
 			
+=======
+			       
+	
+>>>>>>> 8841196eabab89acc2b28aaffdcaea4c2ab0e0fd
 		});
 		btnCadastrarPatrimonio.setBounds(172, 453, 180, 23);
 		contentPane.add(btnCadastrarPatrimonio);

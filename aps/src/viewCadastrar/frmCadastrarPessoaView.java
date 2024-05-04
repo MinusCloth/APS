@@ -152,11 +152,19 @@ public class frmCadastrarPessoaView extends JFrame {
 					TelefoneDAO objtelefoneDAO= new TelefoneDAO();
 					objtelefoneDAO.cadastrarTelefone(objTelefone);
 					JOptionPane.showMessageDialog(null, "Pessoa cadastrada com sucesso!");
+<<<<<<< HEAD
 					 
 				                frmCadastrarPatrimonioView objfrmCadastrarPatrimonio=new frmCadastrarPatrimonioView();
 				                objfrmCadastrarPatrimonio.setVisible(true);
 				                dispose();
 				              
+=======
+				                frmCadastrarPatrimonioView objfrmCadastrarPatrimonio=new frmCadastrarPatrimonioView();
+				                objfrmCadastrarPatrimonio.setVisible(true);
+				                dispose();
+				                
+				      
+>>>>>>> 8841196eabab89acc2b28aaffdcaea4c2ab0e0fd
 				    }
 			}
 			    
