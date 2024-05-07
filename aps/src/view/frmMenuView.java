@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import viewCadastrar.frmCadastrarChamado;
+
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -39,7 +39,7 @@ public class frmMenuView extends JFrame {
 	 */
 	public frmMenuView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 548);
+		setBounds(100, 100, 450, 402);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -50,22 +50,13 @@ public class frmMenuView extends JFrame {
 		labelMenu.setBounds(183, 11, 75, 14);
 		contentPane.add(labelMenu);
 		
-		JButton btnAbrirChamado = new JButton("Abrir Chamado");
-		btnAbrirChamado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abrirChamado();
-			}
-		});
-		btnAbrirChamado.setBounds(65, 143, 269, 23);
-		contentPane.add(btnAbrirChamado);
-		
 		JButton btnVerChamado = new JButton("Vizualizar Carteira");
 		btnVerChamado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirCarteira();
 			}
 		});
-		btnVerChamado.setBounds(65, 229, 269, 23);
+		btnVerChamado.setBounds(65, 216, 287, 57);
 		contentPane.add(btnVerChamado);
 		
 		JButton btnGerenciarChamado = new JButton("Gerenciar Chamados");
@@ -74,15 +65,8 @@ public class frmMenuView extends JFrame {
 				gerenciadorChamadas();
 			}
 		});
-		btnGerenciarChamado.setBounds(65, 321, 269, 23);
+		btnGerenciarChamado.setBounds(65, 87, 287, 57);
 		contentPane.add(btnGerenciarChamado);
-	}
-	private void abrirChamado() {
-		//levar para o abrir chamado
-		frmCadastrarChamado objfrmCadastrarChamado=new frmCadastrarChamado();
-		objfrmCadastrarChamado.setVisible(true);
-		dispose();
-		
 	}
 	
 	private void gerenciadorChamadas() {
