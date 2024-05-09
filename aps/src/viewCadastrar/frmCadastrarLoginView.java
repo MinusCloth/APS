@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import entidades.Login;
+import view.frmInicialView;
 
 
 
@@ -75,13 +76,22 @@ public class frmCadastrarLoginView extends JFrame {
 				cadastrar();
 			}
 		});
-		btnLogar.setBounds(143, 213, 125, 23);
+		btnLogar.setBounds(216, 214, 125, 23);
 		contentPane.add(btnLogar);
 		
 		textSenhaUsuario = new JTextField();
 		textSenhaUsuario.setBounds(143, 161, 125, 20);
 		contentPane.add(textSenhaUsuario);
 		textSenhaUsuario.setColumns(10);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				voltar();
+			}
+		});
+		btnVoltar.setBounds(58, 214, 125, 23);
+		contentPane.add(btnVoltar);
 	}
 	private void cadastrar() {
 		//definir variaveis para receber valor
@@ -99,6 +109,7 @@ public class frmCadastrarLoginView extends JFrame {
 		Login objLogin=new Login();
 		objLogin.setUsuario(nomeUsuario);
 		objLogin.setSenha(senhaUsuario);
+		Login.adicionarLogin(objLogin);
 		
 		
 		//levar para a LoginDao
@@ -108,10 +119,14 @@ public class frmCadastrarLoginView extends JFrame {
 		}else {
 		
 		objLoginDAO.cadastrarUsuario(objLogin);
+		
+
+		
+		
 		JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
 		
 		
-            	frmCadastrarPessoaView objfrmCadastrarPessoaView=new frmCadastrarPessoaView();
+            	frmCadastrarPessoaView objfrmCadastrarPessoaView=new frmCadastrarPessoaView(objLogin);
             	objfrmCadastrarPessoaView.setVisible(true);
             	dispose();
 
@@ -119,5 +134,11 @@ public class frmCadastrarLoginView extends JFrame {
 	
 		}
 	
-	
+	public void voltar() {
+		frmInicialView objfrmInicialView=new frmInicialView();
+		
+		objfrmInicialView.setVisible(true);
+		dispose();
+		
+	}
 }

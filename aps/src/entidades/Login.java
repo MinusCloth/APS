@@ -1,5 +1,8 @@
 package entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Login {
 	
 	private int id_login;
@@ -14,7 +17,11 @@ public class Login {
 		this.senha = senha;
 	}*/
 	
-	
+	private static List<Login> listaLogins = new ArrayList<>();
+
+    public static void adicionarLogin(Login login) {
+        listaLogins.add(login);
+    }
 	
 	
 	public String getUsuario() {

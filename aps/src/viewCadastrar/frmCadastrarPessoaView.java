@@ -6,8 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DAO.LoginDAO;
 import DAO.PessoaDAO;
 import DAO.TelefoneDAO;
+import entidades.Login;
 import entidades.Pessoa;
 import entidades.Telefones;
 import javax.swing.JLabel;
@@ -27,7 +29,8 @@ public class frmCadastrarPessoaView extends JFrame {
 	private JTextField textCidadePessoa;
 	private JTextField textRuaPessoa;
 	private JTextField textTelefonePessoa;
-
+	private static Login login;
+	private int id_login;
 	/**
 	 * Launch the application.
 	 */
@@ -35,7 +38,7 @@ public class frmCadastrarPessoaView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmCadastrarPessoaView frame = new frmCadastrarPessoaView();
+					frmCadastrarPessoaView frame = new frmCadastrarPessoaView(login);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +50,16 @@ public class frmCadastrarPessoaView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmCadastrarPessoaView() {
+	
+	
+	public frmCadastrarPessoaView(Login login) {
+		super();
+		this.login=login;
+		//obter id_login
+		id_login=login.getId_login();
+		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 594);
 		contentPane = new JPanel();
@@ -115,12 +127,9 @@ public class frmCadastrarPessoaView extends JFrame {
 		contentPane.add(btnCadastrarPessoa);
 	}
 	private void cadastrarPessoa() {
-		
-		
+	
 		//criar variaveis
 			String nomePessoa,emailPessoa,cidadePessoa,ruaPessoa,telefonePessoa;
-			
-			
 			
 			//salvar parametros que o usuario escreveu
 			nomePessoa=textNomePessoa.getText();
@@ -134,7 +143,7 @@ public class frmCadastrarPessoaView extends JFrame {
 			}
 			else {
 			//instanciar obleto da entidade 
-			Pessoa objPessoa = new Pessoa(nomePessoa,emailPessoa,cidadePessoa,ruaPessoa);
+			Pessoa objPessoa = new Pessoa(id_login,nomePessoa,emailPessoa,cidadePessoa,ruaPessoa);
 			Telefones objTelefone=new Telefones(telefonePessoa);
 			
 			
@@ -153,7 +162,7 @@ public class frmCadastrarPessoaView extends JFrame {
 					objtelefoneDAO.cadastrarTelefone(objTelefone);
 					JOptionPane.showMessageDialog(null, "Pessoa cadastrada com sucesso!");
 					 
-				                frmCadastrarPatrimonioView objfrmCadastrarPatrimonio=new frmCadastrarPatrimonioView();
+				                frmCadastrarPatrimonioView objfrmCadastrarPatrimonio=new frmCadastrarPatrimonioView(login);
 				                objfrmCadastrarPatrimonio.setVisible(true);
 				                dispose();
 				              

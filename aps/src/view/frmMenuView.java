@@ -6,7 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
+import DAO.LoginDAO;
+import entidades.Login;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ public class frmMenuView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public static Login login;
 
 	/**
 	 * Launch the application.
@@ -25,7 +27,7 @@ public class frmMenuView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmMenuView frame = new frmMenuView();
+					frmMenuView frame = new frmMenuView(login);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +39,14 @@ public class frmMenuView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmMenuView() {
+	
+	
+	public frmMenuView(Login login) {
+		super();
+		this.login=login;
+		LoginDAO objLoginDAO=new LoginDAO();
+		objLoginDAO.obterIDLogin(login);
+		 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 402);
 		contentPane = new JPanel();
@@ -71,13 +80,13 @@ public class frmMenuView extends JFrame {
 	
 	private void gerenciadorChamadas() {
 		//levar para chamados
-		frmGerenciadorChamadosView objfrmVizualizarChamadosView=new frmGerenciadorChamadosView();
+		frmGerenciadorChamadosView objfrmVizualizarChamadosView=new frmGerenciadorChamadosView(login);
 		objfrmVizualizarChamadosView.setVisible(true);
 		dispose();
 	}
 	
 	private void abrirCarteira() {
-		frmCarteiraView objfrmCarteiraView=new frmCarteiraView();
+		frmCarteiraView objfrmCarteiraView=new frmCarteiraView(login);
 		objfrmCarteiraView.setVisible(true);
 		dispose();
 	}

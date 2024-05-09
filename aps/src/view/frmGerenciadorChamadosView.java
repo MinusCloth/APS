@@ -13,7 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import DAO.ChamadosDAO;
+import DAO.LoginDAO;
+import DAO.PessoaDAO;
 import entidades.Chamados;
+import entidades.Login;
 
 import javax.swing.ListSelectionModel;
 import java.awt.SystemColor;
@@ -43,6 +46,8 @@ public class frmGerenciadorChamadosView extends JFrame {
 	private JButton btnLimparDescricao;
 	private JTextField textCodigo;
 	private JButton btnAlterar;
+	private static Login login;
+	private static int id_pessoa;
 	/**
 	 * Launch the application.
 	 */
@@ -50,9 +55,9 @@ public class frmGerenciadorChamadosView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmGerenciadorChamadosView frame = new frmGerenciadorChamadosView();
+					frmGerenciadorChamadosView frame = new frmGerenciadorChamadosView(login);
 					frame.setVisible(true);
-					pesquisar();
+					
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +69,21 @@ public class frmGerenciadorChamadosView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmGerenciadorChamadosView() {
+
+	
+	public frmGerenciadorChamadosView(Login login) {
+		super();
+		this.login=login;
+		//loginDAO pegar id_login 
+		int id_login=login.getId_login();
+		
+		//instanciar pessoaDAO
+		PessoaDAO objPessoaDAO=new PessoaDAO();
+		//obter id_pessoa atraves do id login
+		id_pessoa=objPessoaDAO.obterIDPessoaLogin(id_login);
+		
+		
+		
 		setBackground(new Color(30, 144, 255));
 		setForeground(new Color(30, 144, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,7 +127,7 @@ public class frmGerenciadorChamadosView extends JFrame {
 		table.setModel(model);
 		//largura da coluna descricao
 		table.getColumnModel().getColumn(3).setPreferredWidth(300);
-		
+		pesquisar();
 		btnCadastrarChamado = new JButton("Cadastrar");
 		btnCadastrarChamado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -217,7 +236,7 @@ public class frmGerenciadorChamadosView extends JFrame {
 		descricao=textDescricao.getText();
 		
 		//setar
-		Chamados objChamados=new Chamados(descricao);
+		Chamados objChamados=new Chamados(id_pessoa,descricao);
 		
 		//levar para DAO
 		ChamadosDAO objChamadosDAO=new ChamadosDAO();
@@ -232,7 +251,7 @@ public class frmGerenciadorChamadosView extends JFrame {
 	}
 	
 	private void voltar() {
-		frmMenuView objfrmMenuView=new frmMenuView();
+		frmMenuView objfrmMenuView=new frmMenuView(login);
 		objfrmMenuView.setVisible(true);
 		dispose();
 	}
@@ -246,7 +265,7 @@ public class frmGerenciadorChamadosView extends JFrame {
 			DefaultTableModel model=(DefaultTableModel) table.getModel();
 			model.setRowCount(0);
 			
-			ArrayList<Chamados> lista=objChamadosDAO.pesquisarChamado();
+			ArrayList<Chamados> lista=objChamadosDAO.pesquisarChamado(id_pessoa);
 			
 			//adiciona linhas com essas informações
 			for(int num=0;num<lista.size();num++) {
@@ -255,7 +274,7 @@ public class frmGerenciadorChamadosView extends JFrame {
 						lista.get(num).getStatus(),
 						lista.get(num).getDt_abertura(),
 						lista.get(num).getDescricao(),
-						lista.get(num).getId_pessoa()
+						//lista.get(num).getId_pessoa()
 						
 						});
 			}
@@ -291,6 +310,7 @@ public class frmGerenciadorChamadosView extends JFrame {
 		
 		//instanciar DTO
 		Chamados objChamados=new Chamados();
+		// objChamados.setId_pessoa(id_chamados); // talvez excluir esse
 		objChamados.setId_chamados(id_chamados);
 		objChamados.setDescricao(descricao);
 		

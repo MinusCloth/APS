@@ -1,6 +1,7 @@
 package entidades;
 
 public class Chamados {
+	private Pessoa pessoa;
 	private int id_chamados,id_pessoa;
 	private String descricao;
 	private String status;
@@ -16,8 +17,9 @@ public class Chamados {
 		this.dt_abertura = dt_abertura;
 	}
 
-	public Chamados(String descricao) {	
+	public Chamados(int id_pessoa,String descricao) {	
 		super();
+		this.id_pessoa=id_pessoa;
 		this.descricao = descricao;
 		this.status ="Aberto";
 	}
@@ -70,6 +72,14 @@ public class Chamados {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 	
 	

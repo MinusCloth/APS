@@ -23,13 +23,14 @@ public class ChamadosDAO {
 		conn=Conexao.getConexao();
 		
 		//Comando SQL
-		String sql="INSERT INTO chamados(descricao,estado)VALUES(?,?)";
+		String sql="INSERT INTO chamados(id_pessoa,descricao,estado)VALUES(?,?,?)";
 		
 		try {
 			//Preparar comando 	SQL
 			ps=conn.prepareStatement(sql);
-			ps.setString(1,objChamados.getDescricao());
-			ps.setString(2,objChamados.getStatus());
+			ps.setInt(1,objChamados.getId_pessoa());
+			ps.setString(2,objChamados.getDescricao());
+			ps.setString(3,objChamados.getStatus());
 			
 			//Executar comando SQL
 			ps.execute();
@@ -44,16 +45,17 @@ public class ChamadosDAO {
 		
 	}
 	
-	public ArrayList<Chamados> pesquisarChamado(){
+	public ArrayList<Chamados> pesquisarChamado(int id_pessoa){
 		new Conexao();
 		conn=Conexao.getConexao();
 		
-		String sql="SELECT id,descricao,dt_abertura,estado FROM chamados";
+		String sql="SELECT id,descricao,dt_abertura,estado FROM chamados WHERE id_pessoa=?";
 		
 		
 		try {
 			
 			ps=conn.prepareStatement(sql);
+			ps.setInt(1,id_pessoa);
 			rs=ps.executeQuery();			
 			
 			while(rs.next()) {

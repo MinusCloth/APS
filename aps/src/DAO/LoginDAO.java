@@ -49,6 +49,10 @@ public class LoginDAO {
 	        ps.setString(1, objUsuario.getUsuario());
 	        ps.setString(2, objUsuario.getSenha());
 	        
+	        //passar para a lista dos logins
+	        
+	        
+	        
 	        // Executar comando SQL
 	        ps.execute();
 	        
@@ -58,6 +62,8 @@ public class LoginDAO {
 	            int idGerado = rs.getInt(1);
 	            objUsuario.setId_login(idGerado);
 	        }
+	        
+	       
 	        
 	        // Fechar recursos
 	        rs.close();
@@ -96,9 +102,11 @@ public class LoginDAO {
 	}
 	
 	
-	public int obterUltimoIDInserido(Login login) {
+	public void obterIDLogin(Login login) {
 	    int id = -1; // Valor padrão, caso não haja nenhum ID inserido
-
+	    
+	    new Conexao();
+		conn =Conexao.getConexao();
 	    try {
 	        // Consulta para obter o último ID inserido
 	        String sql = "SELECT id_login FROM login WHERE Usuario = ? AND Senha = ?";
@@ -109,12 +117,11 @@ public class LoginDAO {
 	        ps.setString(2,login.getSenha());
 	        
 	        
-	        ps = conn.prepareStatement(sql);
+	        
 	        ResultSet rs = ps.executeQuery();
-
-	        // Verifica se há um resultado
 	        if (rs.next()) {
-	            id = rs.getInt("last_id"); // Obtém o valor do ID
+	            id = rs.getInt("id_login");
+	            login.setId_login(id);
 	        }
 	        
 	        // Fecha o ResultSet
@@ -125,8 +132,12 @@ public class LoginDAO {
 	        
 	    
 
-	    return id;
+	    
 	}
+	
+	
+	
+	
 	
 	
 	

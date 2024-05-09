@@ -1,6 +1,7 @@
 package entidades;
 
 public class Patrimonio {
+	private Pessoa pessoa;
 	private int id_patrimonio,id_pessoa;  
 	private double contaCorrente;
 	private double contaPoupanca;
@@ -8,13 +9,20 @@ public class Patrimonio {
 	
 	
 	
+	public Patrimonio(int id_pessoa,double contaCorrente, double contaPoupanca, double outrosInvestimentos) {
+		
+		this.id_pessoa=id_pessoa;
+		this.contaCorrente = contaCorrente;
+		this.contaPoupanca = contaPoupanca;
+		this.outrosInvestimentos = outrosInvestimentos;
+	}
+	
 	public Patrimonio(double contaCorrente, double contaPoupanca, double outrosInvestimentos) {
 
 		this.contaCorrente = contaCorrente;
 		this.contaPoupanca = contaPoupanca;
 		this.outrosInvestimentos = outrosInvestimentos;
 	}
-	
 	public Patrimonio() {
 
 		this.contaCorrente = contaCorrente;
@@ -66,6 +74,14 @@ public class Patrimonio {
 	}
 	public void setOutrosInvestimentos(double outrosInvestimentos) {
 		this.outrosInvestimentos = outrosInvestimentos;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 	
 	

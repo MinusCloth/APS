@@ -7,7 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import DAO.PatrimonioDAO;
+import DAO.PessoaDAO;
+import entidades.Login;
 import entidades.Patrimonio;
+import entidades.Pessoa;
 import view.frmMenuView;
 
 import javax.swing.JLabel;
@@ -25,6 +28,10 @@ public class frmCadastrarPatrimonioView extends JFrame {
 	private JTextField textCorrente;
 	private JTextField textPoupanca;
 	private JTextField textInvestimentos;
+	private static Pessoa pessoa;
+	private static Login login;
+	private int id_login;
+	private int id_pessoa;
 
 	/**
 	 * Launch the application.
@@ -33,7 +40,7 @@ public class frmCadastrarPatrimonioView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmCadastrarPatrimonioView frame = new frmCadastrarPatrimonioView();
+					frmCadastrarPatrimonioView frame = new frmCadastrarPatrimonioView(login);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +52,17 @@ public class frmCadastrarPatrimonioView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmCadastrarPatrimonioView() {
+	public frmCadastrarPatrimonioView(Login login) {
+		super();
+		this.login=login;
+		//variavel para salvar id_login
+		id_login=login.getId_login();
+		//obter id_pessoa atraves do id_login
+		PessoaDAO objPessoaDAO=new PessoaDAO();
+		id_pessoa=objPessoaDAO.obterIDPessoaLogin(id_login);
+		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);
 		contentPane = new JPanel();
@@ -102,15 +119,20 @@ public class frmCadastrarPatrimonioView extends JFrame {
 				investimentos = Double.parseDouble(investimentosStr);
 				
 				
+			
+				
+				
+				
+				
 				//instanciar Patrimonio para setar os valores
-				Patrimonio objPatrimonio=new Patrimonio(corrente,poupanca,investimentos);
+				Patrimonio objPatrimonio=new Patrimonio(id_pessoa,corrente,poupanca,investimentos);
 				
 				//passar esses valores para a DAO
 				PatrimonioDAO objPatrimonioDAO=new PatrimonioDAO();
 				objPatrimonioDAO.cadastrarPatrimonio(objPatrimonio);
 				 JOptionPane.showMessageDialog(null, "Patrimonio cadastrado com sucesso!");
 				
-			            	frmMenuView objfrmMenuView=new frmMenuView();
+			            	frmMenuView objfrmMenuView=new frmMenuView(login);
 			            	objfrmMenuView.setVisible(true);
 			            	dispose();
 			            }

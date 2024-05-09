@@ -1,6 +1,7 @@
 package entidades;
 
 public class Pessoa {
+	private Login login;
 	private String nome;
 	private String email;
 	private String rua;
@@ -57,7 +58,8 @@ public class Pessoa {
 		this.cidade=cidade;
 	}
 	
-	public Pessoa(String nome,String email,String rua,String cidade) {
+	public Pessoa(int id_login,String nome,String email,String rua,String cidade) {
+		this.id_login=id_login;
 		this.nome=nome;
 		this.email=email;
 		this.rua=rua;
@@ -70,6 +72,14 @@ public class Pessoa {
 	
 	public void criarChamada(String descricao) {
 		String desc=descricao;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 	
 	

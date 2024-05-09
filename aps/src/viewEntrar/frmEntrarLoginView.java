@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import entidades.Login;
+import view.frmInicialView;
 import view.frmMenuView;
 import viewCadastrar.frmCadastrarPessoaView;
 
@@ -75,12 +76,21 @@ public class frmEntrarLoginView extends JFrame {
 				logar();
 			}
 		});
-		btnLogar.setBounds(161, 213, 89, 23);
+		btnLogar.setBounds(237, 213, 89, 23);
 		contentPane.add(btnLogar);
 		
 		textSenhaUsuario = new JPasswordField();
 		textSenhaUsuario.setBounds(143, 159, 125, 20);
 		contentPane.add(textSenhaUsuario);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				voltar();
+			}
+		});
+		btnVoltar.setBounds(100, 213, 89, 23);
+		contentPane.add(btnVoltar);
 	}
 	private void logar() {
 		try {
@@ -101,7 +111,7 @@ public class frmEntrarLoginView extends JFrame {
 			
 			if(rloginDAO.next()) {
 			//chamar tela que eu quero abrir
-				frmMenuView objfrmMenuView=new frmMenuView();
+				frmMenuView objfrmMenuView=new frmMenuView(objLogin);
 				//abrir a tela principal
 				 objfrmMenuView.setVisible(true);
 				//fechar tela de login
@@ -116,5 +126,13 @@ public class frmEntrarLoginView extends JFrame {
 			JOptionPane.showInternalMessageDialog(null,"frmLoginView"+erro);
 			
 		}
+	}
+	
+	public void voltar() {
+		frmInicialView objfrmInicialView=new frmInicialView();
+		
+		objfrmInicialView.setVisible(true);
+		dispose();
+		
 	}
 }

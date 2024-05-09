@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DAO.PatrimonioDAO;
+import DAO.PessoaDAO;
+import entidades.Login;
 import entidades.Patrimonio;
 
 import javax.swing.JLabel;
@@ -17,6 +20,9 @@ public class frmCarteiraView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private static Login login;
+	private int id_pessoa;
+	private Patrimonio patrimonio;
 
 	/**
 	 * Launch the application.
@@ -25,7 +31,7 @@ public class frmCarteiraView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmCarteiraView frame = new frmCarteiraView();
+					frmCarteiraView frame = new frmCarteiraView(login);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +43,22 @@ public class frmCarteiraView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmCarteiraView() {
+	public frmCarteiraView(Login login) {
+		super();
+		this.login=login;
+		
+		int id_login=login.getId_login();
+		
+		//instanciar pessoaDAO
+		PessoaDAO objPessoaDAO=new PessoaDAO();
+		//obter id_pessoa atraves do id login
+		id_pessoa=objPessoaDAO.obterIDPessoaLogin(id_login);
+		//////
+		
+		PatrimonioDAO objPatrimonioDAO=new PatrimonioDAO();
+		patrimonio=objPatrimonioDAO.pesquisarPatrimonio(id_pessoa);
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 348);
 		contentPane = new JPanel();
@@ -47,22 +68,22 @@ public class frmCarteiraView extends JFrame {
 		contentPane.setLayout(null);
 		
 		//instanciar Patrimonio
-		Patrimonio objPatrimonio=new Patrimonio();
+		
 		
 		
 		JLabel labelCarteira = new JLabel("Carteira");
 		labelCarteira.setBounds(167, 11, 188, 14);
 		contentPane.add(labelCarteira);
 		
-		JLabel labelCorrente = new JLabel("Conta Corrente:"+objPatrimonio.getContaCorrente());
+		JLabel labelCorrente = new JLabel("Conta Corrente:"+patrimonio.getContaCorrente());
 		labelCorrente.setBounds(35, 44, 351, 36);
 		contentPane.add(labelCorrente);
 		
-		JLabel labelContaPoupanca = new JLabel("Conta Poupanca:"+objPatrimonio.getContaPoupanca());
+		JLabel labelContaPoupanca = new JLabel("Conta Poupanca:"+patrimonio.getContaPoupanca());
 		labelContaPoupanca.setBounds(35, 106, 351, 36);
 		contentPane.add(labelContaPoupanca);
 		
-		JLabel labelInvestimentos = new JLabel("Investimentos:"+objPatrimonio.getOutrosInvestimentos());
+		JLabel labelInvestimentos = new JLabel("Investimentos:"+patrimonio.getOutrosInvestimentos());
 		labelInvestimentos.setBounds(35, 174, 351, 36);
 		contentPane.add(labelInvestimentos);
 		
@@ -77,7 +98,7 @@ public class frmCarteiraView extends JFrame {
 	}
 	//botao voltar
 	private void voltar() {
-		frmMenuView objfrmMenuView =new frmMenuView();
+		frmMenuView objfrmMenuView =new frmMenuView(login);
 		objfrmMenuView.setVisible(true);
 		dispose();
 	}
