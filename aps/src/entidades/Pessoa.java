@@ -1,14 +1,27 @@
 package entidades;
 
 public class Pessoa {
+	private Login login;
 	private String nome;
 	private String email;
 	private String rua;
 	private String cidade;
-	// id_login     id_telefones   id_pessoa
+	private int id_login,id_telefones,id_pessoa;
 	
 	
 	
+	
+	public int getId_login() {
+		return id_login;
+	}
+
+	public int getId_telefones() {
+		return id_telefones;
+	}
+
+	public int getId_pessoa() {
+		return id_pessoa;
+	}
 	
 	public String  getNome() {
 		return this.nome;
@@ -23,7 +36,15 @@ public class Pessoa {
 		return this.cidade;
 	}
 	
-	
+	public void setId_login(int id_login) {
+		this.id_login = id_login;
+	}
+	public void setId_telefones(int id_telefones) {
+		this.id_telefones = id_telefones;
+	}
+	public void setId_pessoa(int id_pessoa) {
+		this.id_pessoa = id_pessoa;
+	}
 	public void setNome(String nome) {
 		this.nome=nome;
 	}
@@ -37,7 +58,8 @@ public class Pessoa {
 		this.cidade=cidade;
 	}
 	
-	public Pessoa(String nome,String email,String rua,String cidade) {
+	public Pessoa(int id_login,String nome,String email,String rua,String cidade) {
+		this.id_login=id_login;
 		this.nome=nome;
 		this.email=email;
 		this.rua=rua;
@@ -50,6 +72,14 @@ public class Pessoa {
 	
 	public void criarChamada(String descricao) {
 		String desc=descricao;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 	
 	
