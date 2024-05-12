@@ -31,12 +31,10 @@ telefone2 VARCHAR(40)
 
 
 CREATE TABLE patrimonio(
-id INT PRIMARY KEY AUTO_INCREMENT,
-id_pessoa INT,
-conta_corrente INT NOT NULL,
-conta_poupanca INT NOT NULL,
-outros_investimentos INT NOT NULL
-);
+id_patrimonio INT PRIMARY KEY AUTO_INCREMENT,
+nome_patrimonio Varchar(255) NOT NULL,
+pn  Varchar(255) NOT NULL,
+sn  Varchar(255) NOT NULL);
 
 
 CREATE TABLE chamados(
